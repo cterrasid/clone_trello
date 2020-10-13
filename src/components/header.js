@@ -1,27 +1,19 @@
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
+import { globalHistory } from '@reach/router'
 
-const Header = ({ siteTitle }) => (
-  <header>
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1>{siteTitle}</h1>
-    </div>
-  </header>
-)
+export default function Header({ siteTitle }) {
+  const path = globalHistory.location.pathname
+  const isAuthPage = path === '/' || path === '/login'
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
+  return (
+    !isAuthPage && (
+      <header>
+        <div>
+          <h1>{siteTitle}</h1>
+        </div>
+      </header>
+    )
+  )
 }
-
-Header.defaultProps = {
-  siteTitle: ``,
-}
-
-export default Header

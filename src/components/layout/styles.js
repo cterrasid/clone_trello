@@ -1,4 +1,10 @@
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
+
+export const breakpoints = {
+  tablet: '@media screen and (min-width: 768px)',
+  laptop: '@media screen and (min-width: 1024px)',
+  desktop: '@media screen and (min-width: 1440px)',
+}
 
 export const GlobalStyle = createGlobalStyle`
 *,*::after, *::before {
@@ -17,5 +23,20 @@ body {
 ul {
   list-style: none;
 }
+`
 
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: ${props => props.direction || 'column'};
+  height: 100%;
+  min-height: ${props => props.minHeight || '60vh'};
+  justify-content: ${props => props.justify || 'center'};
+  align-items: ${props => props.align || 'center'};
+  padding: 20px;
+  width: 100%;
+
+  ${breakpoints.tablet} {
+    padding: inherit 40px;
+    margin: 0 auto;
+  }
 `

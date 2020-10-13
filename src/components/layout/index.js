@@ -2,9 +2,9 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import Header from 'components/header'
-import { GlobalStyle } from './styles'
+import { GlobalStyle, Wrapper } from './styles'
 
-export default function Layout({ children }) {
+export default function Layout({ children, location }) {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -19,13 +19,7 @@ export default function Layout({ children }) {
     <>
       <GlobalStyle />
       <Header siteTitle={data.site.siteMetadata?.title || `Trello Clone`} />
-      <div
-        style={{
-          margin: `0 auto`,
-          maxWidth: 960,
-          padding: `0 1.0875rem 1.45rem`,
-        }}
-      >
+      <Wrapper>
         <main>{children}</main>
         <footer
           style={{
@@ -34,7 +28,7 @@ export default function Layout({ children }) {
         >
           Created with &#10084; by Clarette, 2020
         </footer>
-      </div>
+      </Wrapper>
     </>
   )
 }
